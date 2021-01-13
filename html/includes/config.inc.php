@@ -1,8 +1,8 @@
 <?php
 if(!defined('LIVE')) DEFINE('LIVE', false);
 DEFINE('CONTACT_EMAIL', 'sdiegogm@gmail.com');
-DEFINE('BASE_URI', 'C:\\wamp64\\www\\e-commerce1\\');
-DEFINE('BASE_URL', 'localhost\\e-commerce1\html\\');
+DEFINE('BASE_URI', 'C:\\wamp64\\www\\cursoecommerce1\\e-commerce1\\');
+DEFINE('BASE_URL', 'localhost/cursoecommerce/e-commerce1/html/');
 DEFINE('MYSQL', BASE_URI.'mysql.inc.php');
 
 session_start();
@@ -23,4 +23,4 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $_vars){
     return true;
 }
 
-set_error_handler('my_erro_handler');
+set_error_handler('my_error_handler');
