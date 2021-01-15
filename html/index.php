@@ -1,7 +1,7 @@
 <?php
 require('./includes/config.inc.php');
-$_SESSION['user_id'] = 1;
-$_SESSION['user_admin'] = true;
+//$_SESSION['user_id'] = 1;
+//$_SESSION['user_admin'] = true;
 require(MYSQL);
 include('./includes/header.html');
 ?>

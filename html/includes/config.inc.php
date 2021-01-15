@@ -24,3 +24,11 @@ function my_error_handler($e_number, $e_message, $e_file, $e_line, $_vars){
 }
 
 set_error_handler('my_error_handler');
+
+function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://'){
+    if(!isset($_SESSION[$check])){
+        $url = $protocol.BASE_URL.$destination;
+        header("Location: $url");
+        exit();
+    }
+}
