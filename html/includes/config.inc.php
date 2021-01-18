@@ -1,7 +1,7 @@
 <?php
 if(!defined('LIVE')) DEFINE('LIVE', false);
 DEFINE('CONTACT_EMAIL', 'sdiegogm@gmail.com');
-DEFINE('BASE_URI', 'C:\\wamp64\\www\\cursoecommerce1\\e-commerce1\\');
+DEFINE('BASE_URI', 'C:\\wamp64\\www\\cursoecommerce\\e-commerce1\\');
 DEFINE('BASE_URL', 'localhost/cursoecommerce/e-commerce1/html/');
 DEFINE('MYSQL', BASE_URI.'mysql.inc.php');
 
