@@ -50,3 +50,36 @@
 
                    
                 ?>
+                <br>
+                <hr>
+                <h1>Calculo de parcelas</h1>
+                <form action="" method="GET">
+                    Total Venda: 
+                    <input type="decimal" name="valor">
+                    <br>
+                    Qtde Parcelas: 
+                    <input type="number" name="qtdeparcelas">
+                    <br>
+                    <input type="submit" value="Calcular">
+                </form>
+
+                <?php
+                  $total = isset($_GET['valor'])?$_GET['valor']:1;
+                  $qtdeparcelas = isset($_GET['qtdeparcelas'])?$_GET['qtdeparcelas']:1;
+                  $calculo = $total/$qtdeparcelas; 
+                  $parcela = truncate($calculo,2);
+                  $parcela1 = ($total -($parcela*$qtdeparcelas))+ $parcela;
+                  echo "1 ° Parcela - R$" . number_format($parcela1, 2, '.', ','). "<br>";
+                  for($i=2;$i<=$qtdeparcelas;$i++){
+                    echo "$i ° Parcela - R$" . number_format($parcela, 2, '.', ','). "<br>";
+                  }
+                  
+                  
+                  function truncate($val, $f="0"){
+                    if(($p = strpos($val, '.')) !== false) {
+                      $val = floatval(substr($val, 0, $p + 1 + $f));
+                    }
+                    return $val;
+                  }
+
+                ?>
