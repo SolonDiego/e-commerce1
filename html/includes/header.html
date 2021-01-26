@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title><?php // Use a default page title if one wasn't provided...
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>
+    <?php // Use a default page title if one wasn't provided...
 	if (isset($page_title)) { 
 			echo $page_title; 
 	} else { 
 			echo 'Knowledge is Power: And It Pays to Know'; 
 	} 
-	?></title>
+	?>
+  </title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/sticky-footer-navbar.css" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <!-- Wrap all page content here -->
-    <div id="wrap">
+  <!-- Wrap all page content here -->
+  <div id="wrap">
 
-      <!-- Fixed navbar -->
-      <div class="navbar navbar-fixed-top">
-        <div class="container">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.php">Knowledge is Power</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav navbar-nav">
-                <?php
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-fixed-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">Knowledge is Power</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav navbar-nav">
+            <?php
                     $pages = array(
                         'Home'=> 'index.php',
                         'About' => '#',
@@ -83,54 +86,59 @@
                       </li>";
 
                     }
-                ?>            
+                ?>
 
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/container-->
-      </div><!--/navbar-->
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/container-->
+    </div>
+    <!--/navbar-->
 
-      <!-- Begin page content -->
-      <div class="container">
-	
-		<div class="row">
-			
-			<div class="col-3">
-				<h3 class="text-success">Content</h3>
-			<div class="list-group">
-        <?php
-          $q = "select * from categories order by category;";
-          $r = mysqli_query($dbc, $q);
-          while(list($id,$category) = mysqli_fetch_array($r, MYSQLI_NUM)){
-            echo "
-              <a href=\"category.php?id=\"" . $id . " class=\"list-group-item\"
-              title=\"" . $category . "\">" . htmlspecialchars($category) .
-            "</a>";
-          }
-        ?>
-      </div><!--/list-group-->
-      
-      <?php
-        if(!isset($_SESSION['user_id'])){
-          require('./includes/login_form.inc.php');
-        }
-      ?>
+    <!-- Begin page content -->
+    <div class="container">
 
-			<form>
-			  <fieldset>
-			    <legend>Login</legend>
-			    <div class="form-group">
-			      <label for="email">Email address</label>
-			      <input type="text" class="form-control" id="email" placeholder="Enter email">
-			    </div>
-			    <div class="form-group">
-			      <label for="pass">Password</label>
-			      <input type="password" class="form-control" id="pass" placeholder="Password">
-			    </div>
-			    <button type="submit" class="btn btn-default">Login</button>
-			  </fieldset>
-			</form>			
-			</div><!--/col-3-->
-		  
-			
-		  <div class="col-9">
+      <div class="row">
+
+        <div class="col-3">
+          <h3 class="text-success">Content</h3>
+          <div class="list-group">
+            <?php
+              $q = "select * from categories order by category;";
+              $r = mysqli_query($dbc, $q);
+              while(list($id,$category) = mysqli_fetch_array($r, MYSQLI_NUM)){
+                echo "
+                <a href=\"category.php?id=\"" . $id . " class=\"list-group-item\"
+                title=\"" . $category . "\">" . htmlspecialchars($category) .
+                "</a>";
+              }
+            ?>
+          </div>
+          <!--/list-group-->
+
+          <?php
+            if(!isset($_SESSION['user_id'])){
+            require('./includes/login_form.inc.php');
+            }
+          ?>
+
+          <form>
+            <fieldset>
+              <legend>Login</legend>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" class="form-control" id="pass" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-default">Login</button>
+            </fieldset>
+          </form>
+        </div>
+        <!--/col-3-->
+
+
+        <div class="col-9">

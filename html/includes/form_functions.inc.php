@@ -9,6 +9,7 @@ function create_form_input($name, $type, $label = '', $errors = array(), $option
 
     echo "<div class=\"form-group";
     if(array_key_exists($name, $errors)) echo " has-error";
+
     echo "\">";
 
     if(!empty($label)) echo "<label for=\"" . $name . "\" class=\"control-label\">" . $label . "</label>";
@@ -45,8 +46,7 @@ function create_form_input($name, $type, $label = '', $errors = array(), $option
 		if ($value) echo $value;
 		
         echo "</textarea>";
-        
-	echo "</div>";
-
     }
+
+    echo "</div>";
 }
