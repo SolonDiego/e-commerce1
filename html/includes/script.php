@@ -82,4 +82,9 @@
                     return $val;
                   }
 
+                  $password = "1234567diego";
+                  $hash = password_hash($password, PASSWORD_BCRYPT);
+
+                  echo "<br>O password é " . $hash;
+
                 ?>
