@@ -42,34 +42,34 @@
         <div class="nav-collapse collapse">
           <ul class="nav navbar-nav">
             <?php
-                    $pages = array(
-                        'Home'=> 'index.php',
-                        'About' => '#',
-                        'Contact' => '#',
-                        'Register' => 'register.php'
-                    );
+              $pages = array(
+                  'Home'=> 'index.php',
+                  'About' => '#',
+                  'Contact' => '#',
+                  'Register' => 'register.php'
+              );
 
-                    $this_page = basename($_SERVER['PHP_SELF']);
+              $this_page = basename($_SERVER['PHP_SELF']);
 
-                    foreach($pages as $k => $v){
-                      echo "<li";
-                      if($this_page == $v) echo " class=\"active\"";
-                      echo "><a href=\"" . $v. "\">".$k."</a></li>";
-                    }
+              foreach($pages as $k => $v){
+                echo "<li";
+                if($this_page == $v) echo " class=\"active\"";
+                echo "><a href=\"" . $v. "\">".$k."</a></li>";
+              }
 
-                    if(isset($_SESSION['user_id'])){
+              if(isset($_SESSION['user_id'])){
 
-                      echo "<li class=\"dropdown\">
-                      <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Account
-                      <b class=\"caret\"></b></a>
-                      <ul class=\"dropdown-menu\">
-                        <li><a href=\"logout.php\">Logout</a></li>
-                        <li><a href=\"renew.php\">Renew</a></li>
-                        <li><a href=\"change_password.php\">Change Password</a></li>
-                        <li><a href=\"favorites.php\">Favorites</a></li>
-                        <li><a href=\"recommendations.php\">Recommendations</a></li>
-                        </ul>
-                      </li>";
+                echo "<li class=\"dropdown\">
+                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Account
+                <b class=\"caret\"></b></a>
+                <ul class=\"dropdown-menu\">
+                <li><a href=\"logout.php\">Logout</a></li>
+                <li><a href=\"renew.php\">Renew</a></li>
+                <li><a href=\"change_password.php\">Change Password</a></li>
+                <li><a href=\"favorites.php\">Favorites</a></li>
+                <li><a href=\"recommendations.php\">Recommendations</a></li>
+                </ul>
+                </li>";
                       
                     }
 
