@@ -87,4 +87,16 @@
 
                   echo "<br>O password é " . $hash;
 
+                  echo "<hr>";
+
+                  echo "Exemplos<br>";
+
+                  // pesquisar no manual do php as variaveis reservadas.
+                  echo $_SERVER['PHP_SELF']."<br>";
+                  echo $_SERVER['SERVER_NAME']."<br>";
+                  echo $_SERVER['SCRIPT_FILENAME']."<br>";
+                  echo $_SERVER['DOCUMENT_ROOT']."<br>";
+                  echo $_SERVER['SERVER_PORT']."<br>";
+                  echo $_SERVER['REMOTE_ADDR']."<br>";
+
                 ?>
