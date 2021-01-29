@@ -99,4 +99,48 @@
                   echo $_SERVER['SERVER_PORT']."<br>";
                   echo $_SERVER['REMOTE_ADDR']."<br>";
 
+                  echo "<hr>";
+
+                  //pesquisar filtros de validação do php
+                  echo "<h3>Filtro de Validação</h3></br>"
                 ?>
+
+              <?php
+                  if(isset($_POST['enviar-formulario'])){
+                    $erros = array();
+
+                    if(!filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT)){
+                       "Idade precisa ser um inteiro"; 
+                    }
+                    if(!filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)){
+                      $erros[] = "Email Inválido"; 
+                    }
+                    if(!filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT)){
+                      $erros[] ="Peso precisa ser um float"; 
+                    }
+                    if(!filter_input(INPUT_POST, 'ip', FILTER_VALIDATE_IP)){
+                      $erros[] ="IP inválido"; 
+                    }
+                    if(!filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL)){
+                      $erros[] ="URL invalida"; 
+                    }
+
+                    if(!empty($erros)){
+                      foreach($erros as $erro){
+                        echo "<li>$erro</li>";
+                      }
+                    }else{
+                      echo "Parabéns, seus dados estão corretos!";
+                    }
+                  }
+                  
+                ?>
+
+              <form action="<?php echo basename($_SERVER['PHP_SELF'])?>" method="POST">
+                  Idade: <input type="text" name="idade"><br>
+                  Email: <input type="text" name="email"><br>
+                  Peso: <input type="text" name="peso"><br>
+                  IP: <input type="text" name="ip"><br>
+                  URL: <input type="text" name="url"><br>
+                  <button type="submit" name="enviar-formulario">Enviar</button>                  
+              </form>
