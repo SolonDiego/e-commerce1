@@ -83,9 +83,18 @@
                   }
 
                   $password = "1234567diego";
-                  $hash = password_hash($password, PASSWORD_BCRYPT);
+                  $senha = '$2y$10$6J/uDcjZJQyRNKtLt0EbfeI6GhdRg5WqSxjA84C.ni..fiqCI/IhK';
 
+                  $hash = password_hash($password, PASSWORD_BCRYPT);
+                  
                   echo "<br>O password é " . $hash;
+
+                  if(password_verify($password, $senha)){
+                    echo "<br> senha correta";
+                  }else{
+                    echo "<br>senha incorreta";
+                  }
+
 
                   echo "<hr>";
 
@@ -188,3 +197,10 @@
                   URL: <input type="text" name="url"><br>
                   <button type="submit" name="enviar-formulario">Enviar</button>                  
               </form>
+
+              <hr>
+
+              <?php
+                session_start();
+                echo $_SESSION['cor'] . "<br>" . $_SESSION['carro'] . "<br>" . session_id();
+              ?>
