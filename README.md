@@ -1,2 +1,2 @@
-# e-commerce1
-## Projeto E-commerce com MySql - Livro de Larry Ullman
+# Primeira Loja
+## Livro E-commerce com MySql - Larry Ullman
