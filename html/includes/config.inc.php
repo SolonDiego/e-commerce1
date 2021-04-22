@@ -1,34 +1,28 @@
 <?php
-if(!defined('LIVE')) DEFINE('LIVE', false);
-DEFINE('CONTACT_EMAIL', 'sdiegogm@gmail.com');
-DEFINE('BASE_URI', 'C:\\wamp64\\www\\cursoecommerce\\e-commerce1\\');
-DEFINE('BASE_URL', 'localhost/cursoecommerce/e-commerce1/html/');
-DEFINE('MYSQL', BASE_URI.'mysql.inc.php');
+    if(!defined('LIVE')) DEFINE('LIVE', false);
 
-session_start();
+    DEFINE('CONTACT_EMAIL', 'sdiegogm@gmail.com');
+    DEFINE('BASE_URI', 'C:\\wamp64\\www\\e-commerce\\');
+    DEFINE('BASE_URL', 'localhost/e-commerce/');
+    DEFINE('MYSQL', BASE_URI.'mysql.inc.php');
+    DEFINE('PDFS', BASE_URI.'pdfs\\');
 
-function my_error_handler($e_number, $e_message, $e_file, $e_line, $_vars){
-    $message = "An error occurred in script '$e_file' on line $e_line:\n$e_message\n";
-    $message .= "<pre>". print_r(debug_backtrace(),1). "</pre>\n";
+    session_start();
 
-    if(!LIVE){
-        echo "<div class=\"alert alert-danger\">" . nl2br($message) . "</div>";
-    }else{
-        error_log($message, 1, CONTACT_EMAIL, 'From:sdiegogm@gmail.com');
-        
-        if($e_number != E_NOTICE){
-            echo "<div class = \"alert alert-danger\"> A system error occurred. We apologize for the inconvenience.</div>";
+    function my_error_handler($e_number, $e_message, $e_file, $e_line, $e_vars){
+        $message = "Um erro ocorreu no script $e_file, na linha $e_line:\n$e_message\n";
+        $message .= "<pre>" .print_r(debug_backtrace(),1)."</pre>\n";
+
+        if(!LIVE){
+            echo "<div class=\"alert alert-danger\">". nl2br($message) . "</div>";
+        }else{
+            error_log($message, 1, CONTACT_EMAIL, 'From:sdiegogm@hotmail.com');
+
+            if($e_number != E_NOTICE){
+                echo "<div class=\"alert alert-danger\">Ocorreu um erro no sistema. Nós pedimos desculpas pelo inconveniente.</div>";
+            }
         }
+        return true;
     }
-    return true;
-}
 
-set_error_handler('my_error_handler');
-
-function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://'){
-    if(!isset($_SESSION[$check])){
-        $url = $protocol.BASE_URL.$destination;
-        header("Location: $url");
-        exit();
-    }
-}
+    set_error_handler('my_error_handler');
