@@ -10,6 +10,43 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }else{
         $reg_errors['first_name'] = 'Please enter your first name';
     }
+
+    if(preg_match('/^[A-Z \'.-]{2,45}$/i', $_POST['last_name'])){
+        $ln = escape_data($_POST['last_name'], $dbc);
+    }else{
+        $reg_errors['last_name'] = 'Please enter your last name';
+    }
+
+    if(preg_match('/^[A-Z0-9]{2,45}$/i', $_POST['username'])){
+        $u = escape_data($_POST['username'], $dbc);
+    }else{
+        $reg_errors['username'] = 'Please enter a desired name only letters and numbers!';
+    }
+
+    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+        $e = escape_data($_POST['email'], $dbc);
+    }else{
+        $reg_errors['email'] = 'Please enter a valid email address!';
+    }
+
+    if(preg_match('/^(\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*){6,}$/', $_POST['pass1'])){
+        if($_POST['pass1'] === $_POST['pass2']){
+            $p = $_POST['pass1'];
+        }else{
+            $reg_errors['pass2'] = 'Your password did not match the confirmed password!';
+        }
+    }else{
+        $reg_errors['pass1'] = 'Please enter a valid password';
+    }
+
+    if(empty($reg_errors)){
+        $q = "SELECT email, username FROM users WHERE email = '$e' OR username = '$u'";
+        $r = mysqli_query($dbc, $q);
+        $rows = mysqli_num_rows($r);
+        if($rows === 0){
+            
+        }
+    }
 }
 require_once('./includes/form_functions.inc.php');
 ?>
