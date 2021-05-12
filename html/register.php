@@ -44,8 +44,25 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $r = mysqli_query($dbc, $q);
         $rows = mysqli_num_rows($r);
         if($rows === 0){
-            
-        }
+            $q = "INSERT INTO users (username, email, pass, first_name, last_name, date_expires)
+                    VALUES ('$u', '$e', '" . password_hash($p, PASSWORD_BCRYPT). "','$fn', '$ln', ADDDATE(NOW(), INTERVAL 1 MONTH))";
+            $r = mysqli_query($dbc, $q);
+
+            if(mysqli_affected_rows($dbc) === 1){
+                echo "<div class=\"alert alert-success\"><h3>Obrigado!</h3>
+                <p>Obrigado por se registrar! Agora você pode logar e acessar o site.</p></div>";
+                $body = "Obrigado por se registrar em qualquer lugar. Blah, blah, blah. \n\n";
+                mail($_POST['email'], 'Registro confirmado', $body, 'From: sdiegogm@gmail.com');
+                include('./includes/footer.html');
+                exit();
+            }else{
+                trigger_error('Você não pôde ser registrado devido a um erro do sistema. Pedimos desculpas por qualquer inconveniente. Estamos trabalhando para corrigir esse erro.');
+            }
+        }else{
+            if($row === 2){
+                $reg_errors['email'] = "Este endereço de e-mail"
+            }
+        }       
     }
 }
 require_once('./includes/form_functions.inc.php');
