@@ -60,7 +60,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
         }else{
             if($row === 2){
-                $reg_errors['email'] = "Este endereço de e-mail"
+                $reg_errors['email'] = "Este endereço de email já foi cadastrado. Se você esqueceu sua senha, use o link à esquerda para que sua senha seja enviada a você.";
+                $reg_errors['username'] = "Este nome de usuário já foi registrado. Por favor, tente outro.";
+            }else{
+                $row = mysqli_fetch_array($r, MYSQLI_NUM);
+						
+				if( ($row[0] === $_POST['email']) && ($row[1] === $_POST['username'])) {
+					$reg_errors['email'] = 'Este endereço de email já foi cadastrado. Se você esqueceu sua senha, use o link à esquerda para que sua senha seja enviada a você.';	
+					$reg_errors['username'] = 'Este nome de usuário já foi registrado com este endereço de e-mail. Se você esqueceu sua senha, use o link à esquerda para que sua senha seja enviada a você.';
+				} elseif ($row[0] === $_POST['email']) { 
+					$reg_errors['email'] = 'Este endereço de email já foi cadastrado. Se você esqueceu sua senha, use o link à esquerda para que sua senha seja enviada a você.';						
+				} elseif ($row[1] === $_POST['username']) { 
+					$reg_errors['username'] = 'Este nome de usuário já foi registrado. Por favor, tente outro nome';			
+				}
             }
         }       
     }

@@ -8,7 +8,7 @@
 
     mysqli_set_charset($dbc, 'utf8');
 
-    function escape_date($data, $dbc){
+    function escape_data($data, $dbc){
         if(get_magic_quotes_gpc()) $data = stripslashes($data);
         return mysqli_real_escape_string($dbc, trim($data));
     } // Final da função
