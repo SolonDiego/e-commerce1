@@ -5,38 +5,39 @@ $page_title = 'Register';
 include('./includes/header.html');
 $reg_errors = array();
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
     if(preg_match('/^[A-Z \'.-]{2,45}$/i', $_POST['first_name'])){
         $fn = escape_data($_POST['first_name'], $dbc);
     }else{
-        $reg_errors['first_name'] = 'Please enter your first name';
+        $reg_errors['first_name'] = 'Por favor, insira seu primeiro nome!';
     }
 
     if(preg_match('/^[A-Z \'.-]{2,45}$/i', $_POST['last_name'])){
         $ln = escape_data($_POST['last_name'], $dbc);
     }else{
-        $reg_errors['last_name'] = 'Please enter your last name';
+        $reg_errors['last_name'] = 'Por favor, insira seu último nome!';
     }
 
     if(preg_match('/^[A-Z0-9]{2,45}$/i', $_POST['username'])){
         $u = escape_data($_POST['username'], $dbc);
     }else{
-        $reg_errors['username'] = 'Please enter a desired name only letters and numbers!';
+        $reg_errors['username'] = 'Por favor, insira o nome desejado. Utilize apenas letras e números!';
     }
 
-    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === $_POST['email']){
         $e = escape_data($_POST['email'], $dbc);
     }else{
-        $reg_errors['email'] = 'Please enter a valid email address!';
+        $reg_errors['email'] = 'Por favor insira um endereço de e-mail válido!';
     }
 
     if(preg_match('/^(\w*(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*){6,}$/', $_POST['pass1'])){
         if($_POST['pass1'] === $_POST['pass2']){
             $p = $_POST['pass1'];
         }else{
-            $reg_errors['pass2'] = 'Your password did not match the confirmed password!';
+            $reg_errors['pass2'] = 'Sua senha não corresponde à senha confirmada!';
         }
     }else{
-        $reg_errors['pass1'] = 'Please enter a valid password';
+        $reg_errors['pass1'] = 'Por favor insira uma senha válida!';
     }
 
     if(empty($reg_errors)){
@@ -86,7 +87,7 @@ require_once('./includes/form_functions.inc.php');
     subscription via <a href="http://www.paypal.com">PayPal</a>.
 </p>
 <form action="register.php" method="POST" accept-charset="utf-8">
-    <?php
+    <?php    
     create_form_input('first_name', 'text', 'First Name', $reg_errors);
     create_form_input('last_name', 'text', 'Last Name', $reg_errors);
     create_form_input('username', 'text', 'Desired Username', $reg_errors);
