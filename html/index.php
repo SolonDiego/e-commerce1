@@ -1,8 +1,9 @@
 <?php
 require('./includes/config.inc.php');
-$_SESSION['user_id'] = 1;
-$_SESSION['user_admin'] = true;
 require(MYSQL);
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    include('./includes/login.inc.php');
+}
 include('./includes/header.html');
 ?>
 <h1>Welcome</h1>
