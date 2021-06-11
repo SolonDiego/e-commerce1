@@ -44,7 +44,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         $q = "SELECT email, username FROM users WHERE email = '$e' OR username = '$u'";
         $r = mysqli_query($dbc, $q);
+
         $rows = mysqli_num_rows($r);
+
         if($rows === 0){
 
             $q = "INSERT INTO users (username, email, pass, first_name, last_name, date_expires)
@@ -70,7 +72,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         }else{
             
-            if($row === 2){
+            if($rows === 2){
                 $reg_errors['email'] = "Este endereço de email já foi cadastrado. Se você esqueceu sua senha, use o link à esquerda para que sua senha seja enviada a você.";
                 $reg_errors['username'] = "Este nome de usuário já foi registrado. Por favor, tente outro.";
             }else{
