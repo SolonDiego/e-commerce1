@@ -4,6 +4,7 @@ require(MYSQL);
 $page_title = 'Register';
 include('./includes/header.html');
 $reg_errors = array();
+ini_set('smtp_port', 465);
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if(preg_match('/^[A-Z \'.-]{2,45}$/i', $_POST['first_name'])){
@@ -60,7 +61,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 
                 $body = "Obrigado por se registrar em qualquer lugar. Blah, blah, blah. \n\n";
 
-                mail($_POST['email'], 'Registro confirmado', $body, 'From: sdiegogm@gmail.com');
+                mail($_POST['email'], "Registro confirmado", $body, "From: sdiegogm@gmail.com");
 
                 include('./includes/footer.html');
 
