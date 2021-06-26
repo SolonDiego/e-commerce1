@@ -3,7 +3,7 @@
 
     DEFINE('CONTACT_EMAIL', 'sdiegogm@gmail.com');
     DEFINE('BASE_URI', 'C:\\wamp64\\www\\e-commerce\\');
-    DEFINE('BASE_URL', 'localhost/e-commerce/');
+    DEFINE('BASE_URL', 'localhost/e-commerce/html/');
     DEFINE('MYSQL', BASE_URI.'mysql.inc.php');
     DEFINE('PDFS', BASE_URI.'pdfs\\');
 
